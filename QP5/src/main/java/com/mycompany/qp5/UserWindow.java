@@ -48,6 +48,7 @@ public class UserWindow extends javax.swing.JFrame {
         
         public GameItem removeElement(int index){
             if(items.size() > 0){
+                //holds on to removed item because we will need to add it
                 GameItem item = items.remove(index);
                 fireContentsChanged(this, index, items.size()-1); 
                 return item;
@@ -176,6 +177,7 @@ public class UserWindow extends javax.swing.JFrame {
         if (selectedIndex != -1) {
             CustomListModel roomItems = ((CustomListModel)jListRoomInventory.getModel());
             CustomListModel myItems = ((CustomListModel)jListMyInventory.getModel());
+            //removes element from room list and direcctly adds it to my list by returning gameItem from remove method
             myItems.addElement(roomItems.removeElement(selectedIndex));
         }
     }//GEN-LAST:event_btnAddActionPerformed
@@ -186,6 +188,7 @@ public class UserWindow extends javax.swing.JFrame {
             CustomListModel myItems = ((CustomListModel)jListMyInventory.getModel());
             CustomListModel roomItems = ((CustomListModel)jListRoomInventory.getModel());
             if(myItems.getSize() > 0) {
+                //removes the element from my list and directly adds it to room by returning gameItem from remove method
                 roomItems.addElement(myItems.removeElement(selected));
             }
         }
